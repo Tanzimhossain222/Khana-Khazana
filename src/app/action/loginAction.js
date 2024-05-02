@@ -25,12 +25,12 @@ const loginUser = async (formData) => {
         }
 
         const sanitizedUser = {
-            id: user._id.toString(), 
+            id: user._id.toString(),
             firstName: user.firstName,
             lastName: user.lastName,
             email: user.email,
             favourites: user.favourites,
-          };
+        };
 
         return { message: 'User logged in successfully!', user: sanitizedUser };
 
