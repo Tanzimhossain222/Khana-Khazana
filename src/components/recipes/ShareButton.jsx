@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   EmailIcon,
   EmailShareButton,
@@ -9,7 +9,7 @@ import {
   TelegramIcon,
   TelegramShareButton,
   TwitterIcon,
-  TwitterShareButton
+  TwitterShareButton,
 } from "react-share";
 
 const ShareButton = ({ recipe }) => {
@@ -63,7 +63,7 @@ const ShareButton = ({ recipe }) => {
         <span>Share</span>
       </div>
       {showDropdown && (
-          <ul
+        <ul
           ref={dropdownRef}
           className="absolute right-0 mt-2 bg-white border border-gray-200 rounded shadow-lg  p-2 z-10 flex gap-2"
         >

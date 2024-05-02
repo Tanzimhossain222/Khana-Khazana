@@ -106,7 +106,6 @@ const RecipeHeader = ({ recipe }) => {
             <FavoriteButton id={recipe?.id} />
             <ShareButton recipe={recipe}/>
           </div>
-
         </div>
       </div>
     </section>
