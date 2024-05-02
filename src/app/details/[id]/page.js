@@ -5,7 +5,6 @@ import RecipeDetails from "@/components/recipes/RecipeDetails";
 export async function generateMetadata({ params: { id } }) {
   const recipe = await findSingleRecipe(id);
 
-
   return {
     title: `Khana Khazana - ${recipe?.name}`,
     description: (recipe?.description).slice(0, 100),
@@ -26,6 +25,7 @@ export async function generateMetadata({ params: { id } }) {
   }
 }
 
+export const maxDuration = 300;
 
 const RecipeDetailsPage = async ({ params: { id } }) => {
   const recipe = await findSingleRecipe(id);
