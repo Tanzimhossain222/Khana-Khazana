@@ -10,7 +10,7 @@ const Header = () => {
     <nav>
     <div className="container flex justify-between py-6">
       <Link href="/">
-        <Image src={logo}  alt="logo" className="object-cover h-[40px]" />
+        <Image src={logo}  alt="logo" width={120} height={100} className="object-cover " />
       </Link>
 
       <ul className="flex gap-4 text-sm text-gray-500">

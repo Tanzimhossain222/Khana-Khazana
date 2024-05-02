@@ -1,5 +1,4 @@
 import { dbConnect } from "@/backend/db/connectDb";
-import { revalidatePath } from "next/cache";
 
 const { userModel } = require("@/backend/model/User");
 
@@ -17,8 +16,6 @@ export const updateFavorite = async (recipeId, authId) => {
         }
 
         await user.save();
-
-        revalidatePath('/');  // 
 
         return user
 

@@ -1,4 +1,5 @@
 
+import NotFound from "@/app/not-found";
 import { findSingleRecipe } from "@/backend/controllers/recipes";
 import Loading from "@/components/Loading";
 import RecipeDetails from "@/components/recipes/RecipeDetails";
@@ -7,6 +8,8 @@ import { Suspense } from "react";
 
 export async function generateMetadata({ params: { id } }) {
   const recipe = await findSingleRecipe(id);
+
+  if (!recipe) return { title: 'Recipe not found' }
 
   return {
     title: `Khana Khazana - ${recipe?.name}`,
@@ -47,6 +50,14 @@ export async function generateMetadata({ params: { id } }) {
 
 const RecipeDetailsPage = async ({ params: { id } }) => {
   const recipe = await findSingleRecipe(id);
+
+  if (!recipe) {
+    return (
+      <div className="container">
+        <NotFound />
+      </div>
+    )
+  }
 
   return (
     <>

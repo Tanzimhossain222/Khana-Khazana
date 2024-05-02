@@ -1,17 +1,17 @@
+import { findAllRecipes } from "@/backend/controllers/recipes";
 import Loading from "@/components/Loading";
 import HeroSection from "@/components/landing/HeroSection";
 import RecipesList from "@/components/recipes/RecipesList";
 import { ErrorBoundary } from "next/dist/client/components/error-boundary";
 import { Suspense } from "react";
 import Error from "./error";
-import { findAllRecipes } from "@/backend/controllers/recipes";
 
 export const metadata = {
   title: "Khana Khazana - Home",
-  openGraph:{
+  openGraph: {
     images: [
       {
-        url : `${process.env.NEXT_PUBLIC_SITE_URL}/api/og`,
+        url: `${process.env.NEXT_PUBLIC_SITE_URL}/api/og`,
         width: 1200,
         height: 630,
         alt: "Khana Khazana"
@@ -29,12 +29,12 @@ export default async function Home() {
   const allRecipes = await findAllRecipes();
   return (
     <>
-      <Suspense fallback={<Loading />}>
-        <ErrorBoundary fallback={<Error />}>
+      <ErrorBoundary fallback={<Error />}>
+        <Suspense fallback={<Loading />}>
           <HeroSection />
           <RecipesList allRecipes={allRecipes} />
-        </ErrorBoundary>
-      </Suspense>
+        </Suspense>
+      </ErrorBoundary>
     </>
   );
 }

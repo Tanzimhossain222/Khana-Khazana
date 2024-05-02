@@ -1,4 +1,4 @@
-//loading next js tailwind css
+
 const loading = () => {
   return (
     
