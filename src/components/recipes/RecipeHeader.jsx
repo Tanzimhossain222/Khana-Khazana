@@ -5,12 +5,13 @@ import { getBlurData } from "@/utils/blur-generator";
 
 const RecipeHeader =async ({ recipe }) => {
   const {base64} = await getBlurData(recipe?.image);
+  const imageUrl = `${recipe?.image}?${new Date().getTime()}`;  // prevent image caching by adding a timestamp
   return (
     <section>
       <div className="grid grid-cols-12 container gap-8 justify-items-center">
         <div className="col-span-12 md:col-span-6">
           <Image
-            src={`${recipe?.image}&${Date.now()}`}
+            src={imageUrl}
             alt={recipe?.name}
             className="w-full h-full rounded-lg object-contain"
             width={600}

@@ -8,7 +8,7 @@ import ToastProvider from "./provider/ToastProvider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Khana Khazana - Home",
+  title: "Khana Khazana",
   description: "The best Indian food in town",
 };
 

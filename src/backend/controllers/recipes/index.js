@@ -9,6 +9,5 @@ export {
     findAllRecipes,
     findSingleRecipe,
     releventRecipes,
-    updateFavorite
-    
+    updateFavorite 
 };

@@ -1,8 +1,10 @@
-/* eslint-disable react/no-unescaped-entities */
+
+import { getBlurData } from "@/utils/blur-generator";
 import Image from "next/image";
 import Link from "next/link";
 
-const RecipeCard = ({ recipe }) => {
+const RecipeCard =async ({ recipe }) => {
+  const {base64} = await getBlurData(recipe?.image);
   return (
     <div className="card">
       <Link href={`/details/${recipe?.id}`}>
@@ -12,6 +14,8 @@ const RecipeCard = ({ recipe }) => {
           alt={recipe?.name}
           width={300}
           height={160}
+          placeholder="blur"
+          blurDataURL={base64}
         />
         <h4 className="my-2"> {recipe?.name} </h4>
       </Link>

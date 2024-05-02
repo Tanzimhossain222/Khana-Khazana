@@ -12,14 +12,7 @@ export async function generateMetadata({ params }) {
 
 const CategorizedPage = async ({ params }) => {
     const categoryName = decodeURIComponent(params.name);
-    let recipes;
-
-    if (categoryName === "All") {
-        recipes = await findAllRecipes();
-    } else {
-        recipes = await releventRecipes(categoryName);
-    }
-
+    let recipes = await releventRecipes(categoryName);
     return (
         <section class="container py-8">
             <div>
@@ -39,7 +32,7 @@ const CategorizedPage = async ({ params }) => {
 
 
 export async function generateStaticParams(){
-    const categories = ["All", "Breakfast & Brunch", "Dessert"];
+    const categories = ["Breakfast & Brunch", "Dessert"];
     return categories.map((category) => {
         return {
             params: {
