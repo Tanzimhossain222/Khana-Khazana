@@ -6,10 +6,7 @@ const nextConfig = {
             protocol: 'https',
             hostname: 'source.unsplash.com'
           },
-        ],
-      },
-      server: {
-        host: '0.0.0.0', 
+        ], 
       },
 };
 
