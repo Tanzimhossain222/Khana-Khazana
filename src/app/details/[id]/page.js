@@ -25,6 +25,7 @@ export async function generateMetadata({ params: { id } }) {
   }
 }
 
+export const maxDuration = 300;
 
 const RecipeDetailsPage = async ({ params: { id } }) => {
   const recipe = await findSingleRecipe(id);
