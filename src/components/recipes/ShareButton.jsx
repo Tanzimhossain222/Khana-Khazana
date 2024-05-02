@@ -1,5 +1,6 @@
 "use client";
 
+import { useCurrentUrl } from "@/app/hooks/useCurrentUrl";
 import { useEffect, useRef, useState } from "react";
 import {
   EmailIcon,
@@ -15,7 +16,7 @@ import {
 const ShareButton = ({ recipe }) => {
   const dropdownRef = useRef(null);
   const [showDropdown, setShowDropdown] = useState(false);
-  const CurrentPageurl = window.location.href;
+  const CurrentPageurl = useCurrentUrl();
   const description = recipe?.description;
 
   useEffect(() => {
@@ -67,39 +68,43 @@ const ShareButton = ({ recipe }) => {
           ref={dropdownRef}
           className="absolute right-0 mt-2 bg-white border border-gray-200 rounded shadow-lg  p-2 z-10 flex gap-2"
         >
-          <li>
-            <FacebookShareButton
-              url={CurrentPageurl}
-              quote={description}
-              hashtag="#foodie, #recipe, #Khana_Khazana"
-            >
-              <FacebookIcon size={24} round />
-            </FacebookShareButton>
-          </li>
-          <li>
-            <EmailShareButton
-              url={CurrentPageurl}
-              subject="Check out this recipe!"
-              body={description}
-              separator=" "
-            >
-              <EmailIcon size={24} round />
-            </EmailShareButton>
-          </li>
-          <li>
-            <TelegramShareButton url={CurrentPageurl} title={description}>
-              <TelegramIcon size={24} round />
-            </TelegramShareButton>
-          </li>
-          <li>
-            <TwitterShareButton
-              url={CurrentPageurl}
-              title={description}
-              hashtags={["foodie", "recipe", "Khana_Khazana"]}
-            >
-              <TwitterIcon size={24} round />
-            </TwitterShareButton>
-          </li>
+          {CurrentPageurl && (
+            <>
+              <li>
+                <FacebookShareButton
+                  url={CurrentPageurl}
+                  quote={description}
+                  hashtag="#foodie, #recipe, #Khana_Khazana"
+                >
+                  <FacebookIcon size={24} round />
+                </FacebookShareButton>
+              </li>
+              <li>
+                <EmailShareButton
+                  url={CurrentPageurl}
+                  subject="Check out this recipe!"
+                  body={description}
+                  separator=" "
+                >
+                  <EmailIcon size={24} round />
+                </EmailShareButton>
+              </li>
+              <li>
+                <TelegramShareButton url={CurrentPageurl} title={description}>
+                  <TelegramIcon size={24} round />
+                </TelegramShareButton>
+              </li>
+              <li>
+                <TwitterShareButton
+                  url={CurrentPageurl}
+                  title={description}
+                  hashtags={["foodie", "recipe", "Khana_Khazana"]}
+                >
+                  <TwitterIcon size={24} round />
+                </TwitterShareButton>
+              </li>
+            </>
+          )}
         </ul>
       )}
     </div>

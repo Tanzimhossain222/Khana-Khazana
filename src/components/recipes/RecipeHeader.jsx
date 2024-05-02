@@ -1,8 +1,10 @@
 import Image from "next/image";
 import FavoriteButton from "./FavoriteButton";
 import ShareButton from "./ShareButton";
+import { getBlurData } from "@/utils/blur-generator";
 
-const RecipeHeader = ({ recipe }) => {
+const RecipeHeader =async ({ recipe }) => {
+  const {base64} = await getBlurData(recipe?.image);
   return (
     <section>
       <div className="grid grid-cols-12 container gap-8 justify-items-center">
@@ -13,7 +15,8 @@ const RecipeHeader = ({ recipe }) => {
             className="w-full h-full rounded-lg object-contain"
             width={600}
             height={600}
-            loading="eager"
+            placeholder="blur"
+            blurDataURL={base64}
           />
         </div>
 

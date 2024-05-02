@@ -10,8 +10,8 @@ export async function generateMetadata({ params: { id } }) {
     description: (recipe?.description).slice(0, 100),
     openGraph: {
       title: `${recipe?.name}`,
-      description: (recipe?.description).slice(0, 100),
-      url: `https://khanakhazana.vercel.app/details/${id}`,
+      siteName: 'Khana Khazana',
+      url: `https://xkhana-khazana.vercel.app/details/${id}`,
       type: 'website',
       images: [
         {
@@ -20,7 +20,9 @@ export async function generateMetadata({ params: { id } }) {
           height: 630,
           alt: recipe?.name
         }
-      ]
+      ],
+      locale: 'en_US',
+      
     }
   }
 }

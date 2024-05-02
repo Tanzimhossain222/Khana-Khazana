@@ -1,8 +1,0 @@
-{
-    "functions": {
-      "/details/[id]": {
-        "maxDuration": 500
-      }
-    }
-  }
-  
