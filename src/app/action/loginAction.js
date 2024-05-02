@@ -10,32 +10,45 @@ const loginUser = async (formData) => {
         userData.password = formData.get('password')
 
         if (!userData.email || !userData.password) {
-            throw new Error('All fields are required.');
+            return {
+                message: 'Please provide email and password!',
+                status: 400
+            };
         }
         const user = await getUserByEmail(userData.email);
 
         if (!user) {
-            throw new Error('User not found.');
+            return {
+                message: 'User not found!',
+                status: 404
+            };
         }
 
         const matched = await hashMatched(userData.password, user.password);
 
-        if (!matched) {
-            throw new Error('Invalid credentials.');
+        if (matched) {
+            const sanitizedUser = {
+                id: user._id.toString(),
+                firstName: user.firstName,
+                lastName: user.lastName,
+                email: user.email,
+                favourites: user.favourites,
+            };
+            return { message: 'User logged in successfully!', user: sanitizedUser, status: 200 };
         }
 
-        const sanitizedUser = {
-            id: user._id.toString(), 
-            firstName: user.firstName,
-            lastName: user.lastName,
-            email: user.email,
-            favourites: user.favourites,
-          };
-
-        return { message: 'User logged in successfully!', user: sanitizedUser };
+        return {
+            message: 'Invalid credentials!',
+            status: 401
+        };
 
     } catch (err) {
-        throw err;
+
+        return {
+            message: err.message,
+            status: 500
+        };
+
     }
 }
 

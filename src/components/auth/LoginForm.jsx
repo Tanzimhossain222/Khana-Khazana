@@ -14,23 +14,22 @@ const LoginForm = () => {
     const formData = new FormData(e.currentTarget);
 
     try {
-     const found= await loginUser(formData);
-      
-      if (found){
-        setAuth(found.user);
+      const res = await loginUser(formData);
 
-        toast.success(found.message, {
+      if (res.status === 200) {
+        setAuth(res.user);
+
+        toast.success(res.message, {
           autoClose: 1000,
           position: "top-right",
         });
-  
+
         setTimeout(() => {
           router.push("/");
         }, 1100);
       } else {
-        throw new Error("User not found");
+        throw new Error(res.message);
       }
-      
     } catch (err) {
       toast.error(err.message, {
         autoClose: 1500,

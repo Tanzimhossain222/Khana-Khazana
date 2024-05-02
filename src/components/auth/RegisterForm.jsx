@@ -10,15 +10,19 @@ const RegisterForm = () => {
     event.preventDefault();
     const formData = new FormData(e.currentTarget);
     try {
-      await registerUser(formData);
-      toast.success("User created successfully!", {
-        autoClose: 1000,
-        position: "top-right",
-      });
+      const res = await registerUser(formData);
+      if (res.status === 201) {
+        toast.success(res.message, {
+          autoClose: 1000,
+          position: "top-right",
+        });
 
-      setTimeout(() => {
-        router.push("/login");
-      }, 1100);
+        setTimeout(() => {
+          router.push("/login");
+        }, 1100);
+      } else {
+        throw new Error(res.message);
+      }
     } catch (err) {
       toast.error(err.message, {
         autoClose: 2800,
